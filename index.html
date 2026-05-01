@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mudit Yadav — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{--bg:#080808;--text:#f2ede4;--muted:#777;--accent:#d4a853;--accent2:#f0cc85;--card:#111;--card2:#161616;--border:rgba(212,168,83,0.15);--border2:rgba(212,168,83,0.35);}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.1rem 5%;background:rgba(8,8,8,0.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.logo{font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--accent);letter-spacing:2px;display:flex;align-items:center;gap:10px;}
+.logo-dot{width:6px;height:6px;background:#4ade80;border-radius:50%;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.4;transform:scale(0.8);}}
+.nav-links{display:flex;gap:2.5rem;list-style:none;}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:0.78rem;letter-spacing:2px;text-transform:uppercase;transition:color 0.3s;}
+.nav-links a:hover{color:var(--accent);}
+.hero{min-height:100vh;display:flex;align-items:center;padding:8rem 5% 5rem;position:relative;overflow:hidden;gap:4rem;}
+.hero-content{flex:1;min-width:0;}
+.hero-right{flex:0 0 420px;position:relative;display:flex;align-items:center;justify-content:center;}
+.hero-img-wrap{position:relative;width:320px;}
+.hero-img-frame{
+  width:300px;height:380px;border-radius:4px;overflow:hidden;
+  border:1px solid var(--border2);position:relative;z-index:2;
+  box-shadow:0 0 80px rgba(212,168,83,0.08);
+}
+.hero-img-frame img{width:100%;height:100%;object-fit:cover;object-position:top center;filter:grayscale(20%) contrast(1.05);}
+.hero-img-frame::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 60%,rgba(8,8,8,0.6));pointer-events:none;}
+.hero-img-border{
+  position:absolute;top:16px;left:16px;right:-16px;bottom:-16px;
+  border:1px solid var(--border);border-radius:4px;z-index:1;
+}
+.float-card{
+  position:absolute;background:rgba(17,17,17,0.92);
+  border:1px solid var(--border2);border-radius:4px;
+  padding:10px 14px;backdrop-filter:blur(10px);z-index:10;
+  white-space:nowrap;
+}
+.float-card-label{font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:3px;}
+.float-card-val{font-size:0.9rem;font-weight:500;color:var(--text);}
+.float-card-accent{color:var(--accent);}
+.fc1{top:-20px;right:-30px;animation:floatY 4s ease-in-out infinite;}
+.fc2{bottom:60px;left:-40px;animation:floatY 4s ease-in-out infinite 1.5s;}
+.fc3{bottom:-20px;right:10px;animation:floatY 4s ease-in-out infinite 0.8s;}
+@keyframes floatY{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
+@media(max-width:1024px){.hero-right{display:none;}}
+.hero-glow{position:absolute;top:-100px;right:-150px;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(212,168,83,0.07) 0%,transparent 65%);pointer-events:none;}
+.hero-glow2{position:absolute;bottom:-200px;left:-100px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(212,168,83,0.04) 0%,transparent 65%);pointer-events:none;}
+.hero-content{max-width:760px;position:relative;z-index:1;}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;font-size:0.72rem;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:2rem;border:1px solid var(--border2);padding:8px 18px;border-radius:2px;background:rgba(212,168,83,0.04);}
+.hero-tag-dot{width:5px;height:5px;background:#4ade80;border-radius:50%;animation:pulse 2s infinite;}
+h1{font-family:'Playfair Display',serif;font-size:clamp(3.2rem,8vw,6.5rem);font-weight:900;line-height:1.02;margin-bottom:0.3rem;letter-spacing:-2px;}
+h1 .line2{color:var(--accent);font-style:italic;}
+.hero-name{font-size:clamp(1rem,2.5vw,1.3rem);color:var(--muted);letter-spacing:4px;text-transform:uppercase;margin-bottom:2rem;font-weight:300;}
+.hero-desc{font-size:1.05rem;color:rgba(242,237,228,0.75);line-height:1.9;margin-bottom:3rem;max-width:580px;font-weight:300;border-left:2px solid var(--accent);padding-left:1.5rem;}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;}
+.btn-primary{padding:15px 36px;background:var(--accent);color:#080808;font-family:'DM Sans',sans-serif;font-weight:500;font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;border:none;cursor:pointer;border-radius:2px;transition:all 0.3s;text-decoration:none;display:inline-block;}
+.btn-outline{padding:15px 36px;background:transparent;color:var(--text);font-family:'DM Sans',sans-serif;font-weight:500;font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;border:1px solid var(--border2);cursor:pointer;border-radius:2px;transition:all 0.3s;text-decoration:none;display:inline-block;}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent);}
+.hero-stats{margin-top:4.5rem;display:flex;gap:0;padding-top:2.5rem;border-top:1px solid var(--border);}
+.stat{flex:1;padding-right:2rem;position:relative;}
+.stat:not(:last-child)::after{content:'';position:absolute;right:0;top:0;height:100%;width:1px;background:var(--border);}
+.stat-num{font-family:'Playfair Display',serif;font-size:3rem;color:var(--accent);font-weight:900;line-height:1;}
+.stat-label{font-size:0.72rem;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-top:6px;}
+.marquee-wrap{padding:1.5rem 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--card);overflow:hidden;}
+.marquee-track{display:flex;gap:3rem;animation:marquee 20s linear infinite;width:max-content;}
+@keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+.marquee-item{font-size:0.72rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);white-space:nowrap;display:flex;align-items:center;gap:1rem;}
+.marquee-sep{color:var(--accent);font-size:1rem;}
+section{padding:7rem 5%;position:relative;}
+.section-label{font-size:0.7rem;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;display:flex;align-items:center;gap:12px;}
+.section-label::before{content:'';width:30px;height:1px;background:var(--accent);}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,5vw,3.8rem);font-weight:700;margin-bottom:3.5rem;line-height:1.1;}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
+.about-text p{color:rgba(242,237,228,0.7);line-height:1.9;font-size:1rem;font-weight:300;margin-bottom:1.2rem;}
+.about-text p strong{color:var(--accent);font-weight:500;}
+.about-badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:2rem;}
+.badge{padding:8px 16px;border:1px solid var(--border2);border-radius:2px;font-size:0.75rem;letter-spacing:1px;text-transform:uppercase;color:var(--accent);background:rgba(212,168,83,0.05);}
+.about-card-big{background:var(--card2);border:1px solid var(--border);padding:3rem 2.5rem;border-radius:4px;position:relative;overflow:hidden;}
+.skill-row{display:flex;justify-content:space-between;align-items:center;padding:1rem 0;border-bottom:1px solid var(--border);}
+.skill-row:last-child{border-bottom:none;}
+.skill-name{font-size:0.85rem;color:var(--muted);letter-spacing:1px;text-transform:uppercase;}
+.skill-bar-wrap{width:60%;height:2px;background:rgba(255,255,255,0.06);border-radius:1px;}
+.skill-bar{height:100%;background:var(--accent);border-radius:1px;}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);}
+.service-card{background:var(--bg);padding:3rem 2.5rem;position:relative;overflow:hidden;transition:background 0.4s;}
+.service-card:hover{background:var(--card2);}
+.service-icon{font-size:2rem;margin-bottom:1.5rem;display:block;}
+.service-num{position:absolute;top:2rem;right:2rem;font-family:'Playfair Display',serif;font-size:5rem;font-weight:900;color:rgba(212,168,83,0.05);line-height:1;pointer-events:none;}
+.service-title{font-size:1.3rem;font-weight:500;margin-bottom:1rem;}
+.service-desc{color:var(--muted);font-size:0.88rem;line-height:1.8;font-weight:300;margin-bottom:2rem;}
+.service-tags{display:flex;flex-wrap:wrap;gap:6px;}
+.tag{font-size:0.68rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);border:1px solid var(--border);padding:5px 10px;border-radius:2px;background:rgba(212,168,83,0.04);}
+.projects-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;}
+.project-card{background:var(--card);border:1px solid var(--border);border-radius:4px;overflow:hidden;transition:transform 0.4s,border-color 0.3s;}
+.project-card:hover{transform:translateY(-6px);border-color:var(--border2);}
+.project-img{height:200px;overflow:hidden}.project-img img{width:100%;height:100%;object-fit:cover;display:block}
+.p-dm{background:linear-gradient(135deg,#0d0d2b 0%,#1a1040 100%);}
+.p-ve{background:linear-gradient(135deg,#1a0808 0%,#2d1010 100%);}
+.p-wd{background:linear-gradient(135deg,#081a08 0%,#102d10 100%);}
+.p-in{background:linear-gradient(135deg,#1a1408 0%,#2d2010 100%);}
+.project-body{padding:1.75rem;}
+.project-type{font-size:0.68rem;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:0.6rem;}
+.project-name{font-size:1.1rem;font-weight:500;margin-bottom:0.6rem;}
+.project-desc{color:var(--muted);font-size:0.85rem;line-height:1.7;font-weight:300;}
+.tools-section{background:var(--card);}
+.tools-categories{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2rem;margin-top:1rem;}
+.tool-cat-title{font-size:0.7rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:1.2rem;padding-bottom:0.75rem;border-bottom:1px solid var(--border);}
+.tool-list{display:flex;flex-direction:column;gap:0.6rem;}
+.tool-item{display:flex;align-items:center;gap:10px;font-size:0.9rem;color:rgba(242,237,228,0.75);font-weight:300;padding:8px 12px;border-radius:2px;transition:all 0.2s;border:1px solid transparent;}
+.tool-item:hover{border-color:var(--border);background:rgba(212,168,83,0.03);color:var(--text);}
+.tool-dot{width:4px;height:4px;background:var(--accent);border-radius:50%;flex-shrink:0;}
+.contact-section{text-align:center;overflow:hidden;position:relative;}
+.contact-inner{position:relative;z-index:1;}
+.contact-card{max-width:680px;margin:0 auto;background:var(--card);border:1px solid var(--border);padding:5rem 4rem;border-radius:4px;}
+.contact-email{font-family:'Playfair Display',serif;font-size:clamp(1.2rem,3vw,2rem);color:var(--accent);margin:2rem 0;letter-spacing:1px;}
+.contact-desc{color:var(--muted);font-size:1rem;line-height:1.8;margin-bottom:2.5rem;font-weight:300;}
+.contact-divider{width:40px;height:1px;background:var(--border2);margin:0 auto 2rem;}
+footer{padding:2rem 5%;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+footer p{color:var(--muted);font-size:0.78rem;letter-spacing:1px;}
+.footer-name{font-family:'Playfair Display',serif;color:var(--accent);}
+@media(max-width:768px){.about-grid{grid-template-columns:1fr;}.services-grid{grid-template-columns:1fr;}.projects-grid{grid-template-columns:1fr;}.hero-stats{flex-wrap:wrap;gap:2rem;}.stat::after{display:none;}.contact-card{padding:3rem 2rem;}.nav-links{display:none;}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="logo"><span class="logo-dot"></span>Mudit Yadav</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li><li><a href="#services">Services</a></li>
+    <li><a href="#work">Work</a></li><li><a href="#tools">Tools</a></li><li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+<section class="hero" id="home">
+  <div class="hero-glow"></div><div class="hero-glow2"></div>
+  <div class="hero-content">
+    <div class="hero-tag"><span class="hero-tag-dot"></span>Open to Freelance Projects</div>
+    <h1>I Don't Just<br><span class="line2">Create. I Convert.</span></h1>
+    <p class="hero-name">— Mudit Yadav</p>
+    <p class="hero-desc">Most people separate design from strategy. I don't.<br>I'm a <strong style="color:var(--accent);font-weight:500;">Digital Marketing Strategist</strong>, <strong style="color:var(--accent);font-weight:500;">Video Editor</strong>, and <strong style="color:var(--accent);font-weight:500;">Web Developer</strong> who builds things that look stunning <em>and</em> actually perform. 2+ years. Real results. No fluff.</p>
+    <div class="hero-btns">
+      <a href="#work" class="btn-primary">See My Work</a>
+      <a href="#contact" class="btn-outline">Work With Me</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">2+</div><div class="stat-label">Years Experience</div></div>
+      <div class="stat" style="padding-left:2rem;"><div class="stat-num">3</div><div class="stat-label">Core Skills</div></div>
+      <div class="stat" style="padding-left:2rem;"><div class="stat-num">10+</div><div class="stat-label">Tools Mastered</div></div>
+    </div>
+  </div>
+<div class="hero-right">
+  <div class="hero-img-wrap">
+    <div class="hero-img-frame">
+      <img src="/images/mudit.jpg" alt="Mudit Yadav">
+    </div>
+    <div class="hero-img-border"></div>
+    <div class="float-card fc1">
+      <div class="float-card-label">Status</div>
+      <div class="float-card-val"><span class="float-card-accent">●</span> Available for Work</div>
+    </div>
+    <div class="float-card fc2">
+      <div class="float-card-label">Experience</div>
+      <div class="float-card-val"><span class="float-card-accent">2+</span> Years</div>
+    </div>
+    <div class="float-card fc3">
+      <div class="float-card-label">Skills</div>
+      <div class="float-card-val">Video · Web · <span class="float-card-accent">Marketing</span></div>
+    </div>
+  </div>
+</div>
+</section>
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <div class="marquee-item">Video Editing <span class="marquee-sep">✦</span></div>
+    <div class="marquee-item">Digital Marketing <span class="marquee-sep">✦</span></div>
+    <div class="marquee-item">Web Development <span class="marquee-sep">✦</span></div>
+    <div class="marquee-item">Wedding Films <span class="marquee-sep">✦</span></div>
+    <div class="marquee-item">Brand Strategy <span class="marquee-sep">✦</span></div>
+    <div class="marquee-item">Social Media <span class="marquee-sep">✦</span></div>
+    <div class="marquee-item">Motion Graphics <span class="marquee-sep">✦</span></div>
+    <div class="marquee-item">WordPress <span class="marquee-sep">✦</span></div>
+    <div class="marquee-item">Video Editing <span class="marquee-sep">✦</span></div>
+    <div class="marquee-item">Digital Marketing <span class="marquee-sep">✦</span></div>
+    <div class="marquee-item">Web Development <span class="marquee-sep">✦</span></div>
+    <div class="marquee-item">Wedding Films <span class="marquee-sep">✦</span></div>
+    <div class="marquee-item">Brand Strategy <span class="marquee-sep">✦</span></div>
+    <div class="marquee-item">Social Media <span class="marquee-sep">✦</span></div>
+    <div class="marquee-item">Motion Graphics <span class="marquee-sep">✦</span></div>
+    <div class="marquee-item">WordPress <span class="marquee-sep">✦</span></div>
+  </div>
+</div>
+<section id="about">
+  <div class="about-grid">
+    <div class="about-text">
+      <p class="section-label">Who I Am</p>
+      <h2 class="section-title" style="margin-bottom:2rem;">Built Different.<br>By Design.</h2>
+      <p>I'm <strong>Mudit Yadav</strong> — and I refuse to be just one thing. While most freelancers pick a lane, I've spent 2+ years mastering three: <strong>video production, digital marketing, and web development</strong>.</p>
+      <p>That's not a flex — it's a superpower for my clients. When I build your website, I'm already thinking about the video content for it. When I shoot your campaign, I know exactly how to run the ads. <strong>Everything connects. Nothing gets wasted.</strong></p>
+      <p>Whether it's a <strong>cinematic wedding teaser</strong> that makes people cry, a <strong>social media strategy</strong> that actually grows a brand, or a <strong>website that converts</strong> — I don't stop until it's exactly right.</p>
+      <div class="about-badges">
+        <span class="badge">Fast Turnaround</span><span class="badge">Multi-Skilled</span>
+        <span class="badge">Results-Driven</span><span class="badge">Creative First</span>
+      </div>
+    </div>
+    <div class="about-visual">
+      <div class="about-card-big">
+        <div class="skill-row"><span class="skill-name">Video Editing</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:92%;"></div></div></div>
+        <div class="skill-row"><span class="skill-name">Digital Marketing</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:85%;"></div></div></div>
+        <div class="skill-row"><span class="skill-name">Web Development</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:92%;"></div></div></div>
+        <div class="skill-row"><span class="skill-name">Motion Graphics</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:75%;"></div></div></div>
+        <div class="skill-row"><span class="skill-name">Brand Strategy</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:78%;"></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="services" style="padding-left:0;padding-right:0;">
+  <div style="padding:0 5% 3.5rem;">
+    <p class="section-label">What I Do</p>
+    <h2 class="section-title">Services</h2>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <span class="service-icon">🎬</span><div class="service-num">01</div>
+      <div class="service-title">Video Editing</div>
+      <p class="service-desc">From cinematic wedding teasers and emotional pre-wed films to viral reels, vlogs, digital invitations, and high-converting ad creatives — I make visuals that hit hard and stay in memory.</p>
+      <div class="service-tags"><span class="tag">Reels</span><span class="tag">Wedding Films</span><span class="tag">Ad Creatives</span><span class="tag">Invitations</span><span class="tag">Vlogs</span><span class="tag">Color Grading</span></div>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">💻</span><div class="service-num">02</div>
+      <div class="service-title">Web Development</div>
+      <p class="service-desc">Fast, responsive, and beautifully designed websites that don't just look good — they work. From business landing pages to full e-commerce stores, I build for performance and conversion.</p>
+      <div class="service-tags"><span class="tag">WordPress</span><span class="tag">Shopify</span><span class="tag">Landing Pages</span><span class="tag">E-Commerce</span><span class="tag">UI Design</span></div>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">📈</span><div class="service-num">03</div>
+      <div class="service-title">Digital Marketing</div>
+      <p class="service-desc">Strategy, content, ads, and growth — all under one roof. I help brands build a digital presence that actually reaches real people, generates leads, and scales.</p>
+      <div class="service-tags"><span class="tag">Meta Ads</span><span class="tag">Google Ads</span><span class="tag">Social Media</span><span class="tag">Brand Strategy</span><span class="tag">SEO</span></div>
+    </div>
+  </div>
+</section>
+<section id="work">
+  <p class="section-label">Selected Projects</p>
+  <h2 class="section-title">Recent Work</h2>
+  <div class="projects-grid">
+    <a href="https://drive.google.com/file/d/1gjeDWvt8dtr2FRp7LRTkhHbaJnxt0c01/view?usp=sharing" target="_blank" class="project-card" style="text-decoration:none;color:inherit;display:block;"><div class="project-img"> <img src="/images/ve.jpg"></div><div class="project-body"><div class="project-type">Video Editing</div><div class="project-name">Wedding Teaser &amp; Pre-Wed Films</div><p class="project-desc">Cinematic storytelling with professional color grading, music sync, and emotional pacing that captures moments forever.</p><div style="margin-top:1rem;font-size:0.75rem;letter-spacing:2px;text-transform:uppercase;color:var(--accent);">View Project →</div></div></a>
+    <a href="https://drive.google.com/drive/folders/1Bm0a0BhObOde4HZYi8di2a0m1by9bbSQ?usp=sharing" target="_blank" class="project-card" style="text-decoration:none;color:inherit;display:block;"><div class="project-img"> <img src="/images/social media.jpg"></div><div class="project-body"><div class="project-type">Digital Marketing</div><div class="project-name">Social Media &amp; Ad Campaigns</div><p class="project-desc">High-engagement posts and paid ad creatives on Meta &amp; Google designed for maximum reach, clicks, and real ROI.</p><div style="margin-top:1rem;font-size:0.75rem;letter-spacing:2px;text-transform:uppercase;color:var(--accent);">View Project →</div></div></a>
+    <a href="https://www.instagram.com/vaidikpalace?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="project-card" style="text-decoration:none;color:inherit;display:block;"><div class="project-img"> <img src="/images/web dev.jpg"></div><div class="project-body"><div class="project-type">Web Development</div><div class="project-name">Business Websites &amp; Online Stores</div><p class="project-desc">Responsive, fast-loading WordPress and Shopify sites built with clean design, SEO foundations, and conversion in mind.</p><div style="margin-top:1rem;font-size:0.75rem;letter-spacing:2px;text-transform:uppercase;color:var(--accent);">View Project →</div></div></a>
+    <a href="https://drive.google.com/drive/folders/1h1urRZD6xtLjxNeAvmwicVA0bCUMdd2P?usp=sharing" target="_blank" class="project-card" style="text-decoration:none;color:inherit;display:block;"><div class="project-img"> <img src="/images/graphic.jpg"></div><div class="project-body"><div class="project-type">Graphic Designing</div><div class="project-name">Digital Invitations &amp; Brand Reels</div><p class="project-desc">Animated digital invitations and brand identity reels with motion graphics, custom transitions, and music sync.</p><div style="margin-top:1rem;font-size:0.75rem;letter-spacing:2px;text-transform:uppercase;color:var(--accent);">View Project →</div></div></a>
+  </div>
+</section>
+<section id="tools" class="tools-section">
+  <p class="section-label">My Arsenal</p>
+  <h2 class="section-title">Tools & Software</h2>
+  <div class="tools-categories">
+    <div><div class="tool-cat-title">Video & Motion</div><div class="tool-list"><div class="tool-item"><span class="tool-dot"></span>Premiere Pro</div><div class="tool-item"><span class="tool-dot"></span>After Effects</div><div class="tool-item"><span class="tool-dot"></span>DaVinci Resolve</div><div class="tool-item"><span class="tool-dot"></span>CapCut</div><div class="tool-item"><span class="tool-dot"></span>Lightroom</div></div></div>
+    <div><div class="tool-cat-title">Design & Creative</div><div class="tool-list"><div class="tool-item"><span class="tool-dot"></span>Adobe Illustrator</div><div class="tool-item"><span class="tool-dot"></span>Canva</div><div class="tool-item"><span class="tool-dot"></span>Figma</div><div class="tool-item"><span class="tool-dot"></span>ChatGPT / AI Tools</div></div></div>
+    <div><div class="tool-cat-title">Web & Marketing</div><div class="tool-list"><div class="tool-item"><span class="tool-dot"></span>WordPress</div><div class="tool-item"><span class="tool-dot"></span>Shopify</div><div class="tool-item"><span class="tool-dot"></span>Google Ads</div><div class="tool-item"><span class="tool-dot"></span>Meta Ads Manager</div><div class="tool-item"><span class="tool-dot"></span>Google Analytics</div></div></div>
+  </div>
+</section>
+<section id="contact" class="contact-section">
+  <div class="contact-inner">
+    <p class="section-label" style="justify-content:center;">Get In Touch</p>
+    <h2 class="section-title" style="text-align:center;margin-bottom:3rem;">Ready to Build<br><span style="color:var(--accent);font-style:italic;">Something Great?</span></h2>
+    <div class="contact-card">
+      <p class="contact-desc">You have a vision. I have the skills to bring it to life — whether it's a brand film, a website, or a complete digital strategy. Let's not overthink it.</p>
+      <div class="contact-divider"></div>
+      <div class="contact-email">mudityadav8000@gmail.com</div>
+      <div style="font-size:0.9rem;color:var(--muted);margin-bottom:2rem;letter-spacing:1px;">+91 80006 32595</div>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+        <a href="mailto:mudityadav8000@gmail.com" class="btn-primary" style="display:inline-flex;align-items:center;gap:8px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>Mail</a>
+        <a href="https://wa.me/918000632595?text=Hey%20Mudit!%20%F0%9F%91%8B%0A%0AI%20came%20across%20your%20portfolio%20and%20I%27m%20genuinely%20impressed.%20%E2%9C%A8%0A%0AI%27d%20love%20to%20discuss%20a%20project%20with%20you.%20Are%20you%20available%3F" target="_blank" class="btn-primary" style="display:inline-flex;align-items:center;gap:8px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+<footer>
+  <p>© 2026 <span class="footer-name">Mudit Yadav</span>. All rights reserved.</p>
+  <p>Video · Marketing · Web</p>
+</footer>
+</body>
+</html>
